@@ -22,7 +22,7 @@ class Test_Broken_Links:
         self.driver.find_element(By.CSS_SELECTOR, ".show #item-6 > .text").click()
 
         assert self.driver.find_element(By.CSS_SELECTOR, "img:nth-child(2)").is_displayed()
-        assert not self.driver.find_element(By.CSS_SELECTOR, "img:nth-child(6)").is_displayed()
+        assert self.driver.find_element(By.CSS_SELECTOR, "img:nth-child(6)").size.get('height') == 16
 
         self.driver.find_element(By.LINK_TEXT, "Click Here for Valid Link").click()
         assert self.driver.current_url == "https://demoqa.com/"

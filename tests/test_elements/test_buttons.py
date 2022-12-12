@@ -26,6 +26,7 @@ class Test_Buttons:
         element = self.driver.find_element(By.ID, "rightClickBtn")
         actions = ActionChains(self.driver)
         actions.context_click(element).perform()
+        time.sleep(3)
         assert self.driver.find_element(By.CSS_SELECTOR, "#rightClickMessage").is_displayed()
 
         # Id randomly generated for some reason

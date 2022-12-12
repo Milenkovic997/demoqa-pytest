@@ -17,8 +17,9 @@ class Test_Links:
             return set(wh_now).difference(set(wh_then)).pop()
 
     def validate_text_appeared(self, id):
-        time.sleep(1)
+        time.sleep(2)
         assert str(id) in self.driver.find_element(By.ID, "linkResponse").text
+        time.sleep(2)
 
     def test_links(self):
         # Elements -> Links
@@ -50,6 +51,7 @@ class Test_Links:
         self.driver.find_element(By.ID, "unauthorized").click()
         self.validate_text_appeared(401)
 
-        self.driver.find_element(By.ID, "invalid-url").click()
+        element = self.driver.find_element(By.ID, "invalid-url")
+        self.driver.execute_script("arguments[0].click();", element)
         self.validate_text_appeared(404)
 
